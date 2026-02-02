@@ -1,0 +1,20 @@
+﻿# Visual Studio
+.vs/
+
+# Build
+bin/
+obj/
+
+# User files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# VSCode, Rider
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+.vs/

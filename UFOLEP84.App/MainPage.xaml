@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="UFOLEP84.App.MainPage"
+             Title="Accueil UFOLEP 84">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Padding="20">
+            <!-- En-tête -->
+            <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                <Image Source="logo_ufolep.png"
+                       HeightRequest="60"
+                       WidthRequest="60" />
+                <Label Text="UFOLEP 84"
+                       FontSize="28"
+                       TextColor="#1E5B7B"
+                       FontAttributes="Bold"
+                       VerticalTextAlignment="Center"/>
+            </HorizontalStackLayout>
+
+            <Label Text="Dernières Actualités"
+                   FontSize="22"
+                   FontAttributes="Bold"/>
+
+            <!-- Liste des actualités -->
+            <CollectionView>
+                <CollectionView.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>🎉 Nouveaux documents Vie Asso disponibles</x:String>
+                        <x:String>🚴 Découvrez les cyclo sports</x:String>
+                        <x:String>📅 Bienvenue aux associations affiliées</x:String>
+                    </x:Array>
+                </CollectionView.ItemsSource>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="15"
+                               CornerRadius="10"
+                               HasShadow="True"
+                               BackgroundColor="#F0F8FF">
+                            <Label Text="{Binding .}"
+                                   FontSize="16"/>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button Text="Voir tout l'agenda"
+                    CornerRadius="5"
+                    BackgroundColor="#1E5B7B"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    Clicked="OnAgendaButtonClicked"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
