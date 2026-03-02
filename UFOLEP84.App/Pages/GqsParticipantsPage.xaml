@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="UFOLEP84.App.Pages.GqsParticipantsPage"
+             Title="Session GQS">
+
+    <Grid RowDefinitions="Auto,Auto,Auto,*" Padding="12" RowSpacing="12" BackgroundColor="{StaticResource AppBgBrush}">
+        <HorizontalStackLayout Spacing="10">
+            <Button Text="Rafraîchir" Clicked="OnRefreshClicked" />
+            <Label x:Name="InfoLabel" VerticalTextAlignment="Center" />
+        </HorizontalStackLayout>
+
+        <Border Grid.Row="1" BackgroundColor="{StaticResource CardBgBrush}" Stroke="{StaticResource CardStrokeBrush}" StrokeThickness="2">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="14" />
+            </Border.StrokeShape>
+            <Border.Shadow>
+                <Shadow Brush="#1F2937" Opacity="0.10" Offset="0,6" Radius="14" />
+            </Border.Shadow>
+
+            <Grid Padding="14" RowDefinitions="Auto,Auto" RowSpacing="8">
+                <VerticalStackLayout Spacing="2">
+                    <Label x:Name="DateValue" FontAttributes="Bold" FontSize="18" />
+                    <Label x:Name="FormateurValue" FontSize="13" TextColor="{StaticResource TextSecondaryBrush}" />
+                    <Label x:Name="LieuValue" FontSize="13" TextColor="{StaticResource TextTertiaryBrush}" />
+                </VerticalStackLayout>
+                <Label Grid.Row="1" x:Name="PlacesValue" FontSize="12" TextColor="{StaticResource TextTertiaryBrush}" />
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="2" BackgroundColor="{AppThemeBinding Light=#FFF7ED, Dark=#7C2D12}" Stroke="Transparent" StrokeThickness="0">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="12" />
+            </Border.StrokeShape>
+            <Grid Padding="10" ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                <Label Text="Astuce" FontAttributes="Bold" TextColor="{AppThemeBinding Light=#7C2D12, Dark=White}" />
+                <Label Grid.Column="1" Text="Tap sur un email ou un numéro pour contacter." TextColor="{AppThemeBinding Light=#7C2D12, Dark=White}" />
+            </Grid>
+        </Border>
+
+        <CollectionView x:Name="ParticipantsView" Grid.Row="3">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border BackgroundColor="{StaticResource CardBgBrush}" Stroke="{StaticResource CardStrokeBrush}" StrokeThickness="1" Margin="0,0,0,10">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="14" />
+                        </Border.StrokeShape>
+                        <Grid Padding="14" RowDefinitions="Auto,Auto,Auto" RowSpacing="6">
+                            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                                <Label Text="{Binding FullName}" FontAttributes="Bold" FontSize="16" />
+                                <Label Text="{Binding LicenceLabel}" FontSize="12" TextColor="{StaticResource TextTertiaryBrush}" HorizontalTextAlignment="End" />
+                            </Grid>
+
+                            <Grid Grid.Row="1" ColumnDefinitions="*,*" ColumnSpacing="10">
+                                <Label Text="{Binding Email}" FontSize="13" TextColor="{StaticResource BrandBlueBrush}" IsVisible="{Binding HasEmail}">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnEmailTapped" CommandParameter="{Binding .}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                                <Label Grid.Column="1" Text="{Binding Phone}" FontSize="13" TextColor="{StaticResource BrandBlueBrush}" IsVisible="{Binding HasPhone}" HorizontalTextAlignment="End">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnPhoneTapped" CommandParameter="{Binding .}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Grid>
+
+                            <Label Grid.Row="2" Text="{Binding TarifLabel}" FontSize="12" TextColor="{StaticResource TextTertiaryBrush}" IsVisible="{Binding HasTarifLabel}" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

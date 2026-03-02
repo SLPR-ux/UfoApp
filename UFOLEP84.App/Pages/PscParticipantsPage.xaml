@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="UFOLEP84.App.Pages.PscParticipantsPage"
+             Title="Session PSC">
+
+    <Grid RowDefinitions="Auto,Auto,Auto,*" Padding="12" RowSpacing="12" BackgroundColor="{StaticResource AppBgBrush}">
+        <HorizontalStackLayout Spacing="10">
+            <Button Text="Rafraîchir" Clicked="OnRefreshClicked" />
+            <Label x:Name="InfoLabel" VerticalTextAlignment="Center" />
+        </HorizontalStackLayout>
+
+        <Border Grid.Row="1" BackgroundColor="{StaticResource CardBgBrush}" Stroke="{StaticResource CardStrokeBrush}" StrokeThickness="2">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="14" />
+            </Border.StrokeShape>
+            <Border.Shadow>
+                <Shadow Brush="#1F2937" Opacity="0.10" Offset="0,6" Radius="14" />
+            </Border.Shadow>
+
+            <Grid Padding="14" RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="*,Auto" RowSpacing="6">
+                <VerticalStackLayout Grid.Row="0" Grid.Column="0" Spacing="2">
+                    <Label x:Name="DateValue" FontAttributes="Bold" FontSize="18" />
+                    <Label x:Name="FormateurValue" FontSize="13" TextColor="{StaticResource TextSecondaryBrush}" />
+                </VerticalStackLayout>
+
+                <Border x:Name="ModeBadge" Grid.Row="0" Grid.Column="1" BackgroundColor="{StaticResource SuccessBrush}" Padding="10,6" IsVisible="False" HorizontalOptions="End" VerticalOptions="Center">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="999" />
+                    </Border.StrokeShape>
+                    <Label Text="Appel" FontSize="12" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" />
+                </Border>
+
+                <Grid Grid.Row="1" Grid.ColumnSpan="2" ColumnDefinitions="*,*,*,*" ColumnSpacing="10">
+                    <VerticalStackLayout Spacing="0">
+                        <Label Text="Inscrits" FontSize="12" TextColor="{StaticResource TextTertiaryBrush}" />
+                        <Label x:Name="ParticipantsCountValue" FontSize="16" FontAttributes="Bold" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Grid.Column="1" Spacing="0">
+                        <Label Text="Présents" FontSize="12" TextColor="{StaticResource TextTertiaryBrush}" />
+                        <Label x:Name="PresentCountValue" FontSize="16" FontAttributes="Bold" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Grid.Column="2" Spacing="0">
+                        <Label Text="Absents" FontSize="12" TextColor="{StaticResource TextTertiaryBrush}" />
+                        <Label x:Name="AbsentCountValue" FontSize="16" FontAttributes="Bold" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Grid.Column="3" Spacing="0">
+                        <Label Text="À pointer" FontSize="12" TextColor="{StaticResource TextTertiaryBrush}" />
+                        <Label x:Name="UnknownCountValue" FontSize="16" FontAttributes="Bold" />
+                    </VerticalStackLayout>
+                </Grid>
+
+                <Label Grid.Row="2" Grid.ColumnSpan="2" x:Name="PlacesMaxValue" FontSize="12" TextColor="{StaticResource TextTertiaryBrush}" />
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="2" BackgroundColor="{AppThemeBinding Light=#ECFDF5, Dark=#052E16}" Stroke="Transparent" StrokeThickness="0">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="12" />
+            </Border.StrokeShape>
+            <Grid Padding="10" ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                <Label Text="Astuce" FontAttributes="Bold" TextColor="{AppThemeBinding Light=#14532D, Dark=White}" />
+                <Label Grid.Column="1" Text="Sur un participant : swipe gauche/droite pour pointer présent/absent." TextColor="{AppThemeBinding Light=#14532D, Dark=White}" />
+            </Grid>
+        </Border>
+
+        <CollectionView x:Name="ParticipantsView" Grid.Row="3">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView>
+                        <SwipeView.LeftItems>
+                            <SwipeItems Mode="Execute">
+                                <SwipeItem Text="Présent" BackgroundColor="#2E7D32" Invoked="OnMarkPresent" CommandParameter="{Binding .}" />
+                            </SwipeItems>
+                        </SwipeView.LeftItems>
+                        <SwipeView.RightItems>
+                            <SwipeItems Mode="Execute">
+                                <SwipeItem Text="Absent" BackgroundColor="#C62828" Invoked="OnMarkAbsent" CommandParameter="{Binding .}" />
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+
+                        <Border BackgroundColor="{StaticResource CardBgBrush}" Stroke="{StaticResource CardStrokeBrush}" StrokeThickness="1" Margin="0,0,0,10">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="14" />
+                            </Border.StrokeShape>
+                            <Grid Padding="14" RowDefinitions="Auto,Auto,Auto" RowSpacing="6">
+                                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                                    <Label Text="{Binding FullName}" FontAttributes="Bold" FontSize="16" />
+                                    <Label Text="{Binding StatusLabel}" FontSize="12" TextColor="{StaticResource TextTertiaryBrush}" HorizontalTextAlignment="End" />
+                                </Grid>
+
+                                <Grid Grid.Row="1" ColumnDefinitions="*,*" ColumnSpacing="10">
+                                    <Label Text="{Binding Email}" FontSize="13" TextColor="{StaticResource BrandBlueBrush}" IsVisible="{Binding HasEmail}">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnEmailTapped" CommandParameter="{Binding .}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <Label Grid.Column="1" Text="{Binding Phone}" FontSize="13" TextColor="{StaticResource BrandBlueBrush}" IsVisible="{Binding HasPhone}" HorizontalTextAlignment="End">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnPhoneTapped" CommandParameter="{Binding .}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </Grid>
+
+                                <VerticalStackLayout Grid.Row="2" Spacing="2" IsVisible="{Binding HasPrescriber}">
+                                    <Label Text="{Binding PrescriberTitle}" FontSize="12" TextColor="{StaticResource TextTertiaryBrush}" />
+                                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                                        <Label Text="{Binding PrescriberName}" FontSize="13" />
+                                        <Label Grid.Column="1" Text="{Binding PrescriberContact}" FontSize="13" TextColor="{StaticResource BrandBlueBrush}" IsVisible="{Binding HasPrescriberContact}" HorizontalTextAlignment="End">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="OnPrescriberContactTapped" CommandParameter="{Binding .}" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </Grid>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Border>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

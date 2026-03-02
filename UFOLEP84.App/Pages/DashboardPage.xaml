@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="UFOLEP84.App.Pages.DashboardPage"
+             Title="Tableau de bord">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="14">
+            <Label Text="Espace admin UFOLEP84"
+                   FontSize="22"
+                   FontAttributes="Bold" />
+
+            <Label x:Name="UserLabel" FontSize="14" TextColor="#444" />
+
+            <Frame Padding="14" CornerRadius="12" HasShadow="True">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Inscriptions / Présence" FontAttributes="Bold" />
+                    <Button Text="PSC — Sessions &amp; participants" Clicked="OnOpenPscClicked" />
+                    <Button Text="GQS — Sessions &amp; participants" Clicked="OnOpenGqsClicked" />
+                    <Button Text="Formations (catalogue)" Clicked="OnOpenFormationsClicked" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Padding="14" CornerRadius="12" HasShadow="True">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="À venir" FontAttributes="Bold" />
+                    <Button Text="Tournois UFOSTREET — inscriptions" Clicked="OnOpenUfoStreetClicked" />
+                    <Button Text="Conciergerie — location de matériel" Clicked="OnOpenConciergerieClicked" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Button Text="Se déconnecter"
+                    BackgroundColor="#B71C1C"
+                    TextColor="White"
+                    Clicked="OnLogoutClicked" />
+
+                <Button Text="Paramètres"
+                    Clicked="OnOpenSettingsClicked" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="UFOLEP84.App.Pages.FormationsPage"
+             Title="Formations">
+
+    <Grid RowDefinitions="Auto,*" Padding="12" RowSpacing="12">
+        <HorizontalStackLayout Spacing="10">
+            <Button Text="Rafraîchir" Clicked="OnRefreshClicked" />
+            <Label x:Name="InfoLabel" VerticalTextAlignment="Center" />
+        </HorizontalStackLayout>
+
+        <CollectionView x:Name="FormationsView" Grid.Row="1" SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="12" Margin="0,0,0,10" CornerRadius="10" HasShadow="True">
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="{Binding Titre}" FontAttributes="Bold" FontSize="18" />
+                            <Label Text="{Binding DateLabel}" />
+                            <Label Text="{Binding LieuLabel}" />
+                            <Label Text="{Binding StatutLabel}" />
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

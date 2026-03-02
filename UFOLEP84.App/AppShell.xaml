@@ -3,13 +3,18 @@
     x:Class="UFOLEP84.App.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:UFOLEP84.App"
+    xmlns:pages="clr-namespace:UFOLEP84.App.Pages"
     Shell.FlyoutBehavior="Disabled"
     Title="UFOLEP84.App">
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Title="Connexion"
+        ContentTemplate="{DataTemplate pages:LoginPage}"
+        Route="login" />
+
+    <ShellContent
+        Title="Tableau de bord"
+        ContentTemplate="{DataTemplate pages:DashboardPage}"
+        Route="dashboard" />
 
 </Shell>

@@ -28,6 +28,27 @@
     <Color x:Key="Gray900">#212121</Color>
     <Color x:Key="Gray950">#141414</Color>
 
+    <!-- App palette (client léger) -->
+    <Color x:Key="BrandBlue">#2563EB</Color>
+    <Color x:Key="BrandIndigo">#4F46E5</Color>
+    <Color x:Key="BrandViolet">#7C3AED</Color>
+    <Color x:Key="Success">#16A34A</Color>
+    <Color x:Key="Warning">#F59E0B</Color>
+    <Color x:Key="Danger">#EF4444</Color>
+    <Color x:Key="Info">#06B6D4</Color>
+
+    <!-- Surfaces (thème clair/sombre) -->
+    <Color x:Key="AppBgLight">#F3F4F6</Color>
+    <Color x:Key="AppBgDark">#0B1220</Color>
+    <Color x:Key="CardBgLight">#FFFFFF</Color>
+    <Color x:Key="CardBgDark">#111827</Color>
+    <Color x:Key="CardStrokeLight">#E5E7EB</Color>
+    <Color x:Key="CardStrokeDark">#374151</Color>
+    <Color x:Key="TextSecondaryLight">#4B5563</Color>
+    <Color x:Key="TextSecondaryDark">#9CA3AF</Color>
+    <Color x:Key="TextTertiaryLight">#6B7280</Color>
+    <Color x:Key="TextTertiaryDark">#6B7280</Color>
+
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}"/>
     <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}"/>
     <SolidColorBrush x:Key="TertiaryBrush" Color="{StaticResource Tertiary}"/>
@@ -42,4 +63,19 @@
     <SolidColorBrush x:Key="Gray600Brush" Color="{StaticResource Gray600}"/>
     <SolidColorBrush x:Key="Gray900Brush" Color="{StaticResource Gray900}"/>
     <SolidColorBrush x:Key="Gray950Brush" Color="{StaticResource Gray950}"/>
+
+    <!-- Brushes (theme binding) -->
+    <SolidColorBrush x:Key="AppBgBrush" Color="{AppThemeBinding Light={StaticResource AppBgLight}, Dark={StaticResource AppBgDark}}" />
+    <SolidColorBrush x:Key="CardBgBrush" Color="{AppThemeBinding Light={StaticResource CardBgLight}, Dark={StaticResource CardBgDark}}" />
+    <SolidColorBrush x:Key="CardStrokeBrush" Color="{AppThemeBinding Light={StaticResource CardStrokeLight}, Dark={StaticResource CardStrokeDark}}" />
+    <SolidColorBrush x:Key="TextSecondaryBrush" Color="{AppThemeBinding Light={StaticResource TextSecondaryLight}, Dark={StaticResource TextSecondaryDark}}" />
+    <SolidColorBrush x:Key="TextTertiaryBrush" Color="{AppThemeBinding Light={StaticResource TextTertiaryLight}, Dark={StaticResource TextTertiaryDark}}" />
+
+    <SolidColorBrush x:Key="BrandBlueBrush" Color="{StaticResource BrandBlue}" />
+    <SolidColorBrush x:Key="BrandIndigoBrush" Color="{StaticResource BrandIndigo}" />
+    <SolidColorBrush x:Key="BrandVioletBrush" Color="{StaticResource BrandViolet}" />
+    <SolidColorBrush x:Key="SuccessBrush" Color="{StaticResource Success}" />
+    <SolidColorBrush x:Key="WarningBrush" Color="{StaticResource Warning}" />
+    <SolidColorBrush x:Key="DangerBrush" Color="{StaticResource Danger}" />
+    <SolidColorBrush x:Key="InfoBrush" Color="{StaticResource Info}" />
 </ResourceDictionary>

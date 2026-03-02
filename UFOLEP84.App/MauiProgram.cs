@@ -15,6 +15,8 @@ namespace UFOLEP84.App
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+            builder.Services.AddSingleton<ApiService>();
+
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif

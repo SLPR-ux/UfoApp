@@ -50,6 +50,13 @@
                     TextColor="White"
                     FontAttributes="Bold"
                     Clicked="OnAgendaButtonClicked"/>
+
+                <Button Text="PSC - Émargement"
+                    CornerRadius="5"
+                    BackgroundColor="#1E5B7B"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    Clicked="OnPscButtonClicked"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
