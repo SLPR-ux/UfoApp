@@ -6,6 +6,7 @@
         {
             InitializeComponent();
 
+            Routing.RegisterRoute(nameof(Pages.WebAppPage), typeof(Pages.WebAppPage));
             Routing.RegisterRoute(nameof(Pages.LoginPage), typeof(Pages.LoginPage));
             Routing.RegisterRoute(nameof(Pages.DashboardPage), typeof(Pages.DashboardPage));
             Routing.RegisterRoute(nameof(Pages.PscSessionsPage), typeof(Pages.PscSessionsPage));

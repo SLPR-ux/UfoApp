@@ -8,23 +8,11 @@
 
             MainPage = new AppShell();
 
-            // Login-first : si une session valide existe, on saute la page login.
+            // Le client lourd est désormais un wrapper WebView de l'app web (/app),
+            // ce qui garantit un rendu et des fonctionnalités identiques.
             Dispatcher.Dispatch(async () =>
             {
-                try
-                {
-                    var api = Services.ServiceLocator.Get<ApiService>();
-                    var authorized = await api.EnsureAuthorizedAsync();
-                    if (authorized)
-                        await Shell.Current.GoToAsync("//dashboard");
-                    else
-                        await Shell.Current.GoToAsync("//login");
-                }
-                catch
-                {
-                    // Best effort : rester sur login en cas d’erreur.
-                    try { await Shell.Current.GoToAsync("//login"); } catch { }
-                }
+                try { await Shell.Current.GoToAsync("//webapp"); } catch { }
             });
         }
     }

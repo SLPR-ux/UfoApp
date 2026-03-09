@@ -8,13 +8,8 @@
     Title="UFOLEP84.App">
 
     <ShellContent
-        Title="Connexion"
-        ContentTemplate="{DataTemplate pages:LoginPage}"
-        Route="login" />
-
-    <ShellContent
-        Title="Tableau de bord"
-        ContentTemplate="{DataTemplate pages:DashboardPage}"
-        Route="dashboard" />
+        Title="UFOLEP84"
+        ContentTemplate="{DataTemplate pages:WebAppPage}"
+        Route="webapp" />
 
 </Shell>
